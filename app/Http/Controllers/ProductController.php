@@ -22,7 +22,6 @@ class ProductController extends Controller
        // $userName = \Auth::user()->id; //return id only
         $products = Product::with(['user'])->get();
         $path = UploadPaths::getUploadPath('product_photos');
-        //$products = Product::all();
         return view('products.index',compact('products','path'));
     }
 

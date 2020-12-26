@@ -75,10 +75,12 @@ class RegisterController extends Controller
         $to_email = $data['email'];
         $body = [];
         $mail_data = array(['body' =>$body]);
-        Mail::send('email.register-email',$mail_data,function ($message) use ($to_name,$to_email){
+      /*  Mail::send(new WelcomeMail($user),$mail_data,function ($message) use ($to_name,$to_email){
             $message->to($to_email,$to_name)->subject('welcome');
-            $message->from(env('MAIL_USERNAME'),'Admin');
-        });
+            $message->from(env('MAIL_FROM_ADDRESS'),'Admin');
+        });*/
+        Mail::to($to_email)->send(new WelcomeMail($user));
+
         return $user;
     }
 }
