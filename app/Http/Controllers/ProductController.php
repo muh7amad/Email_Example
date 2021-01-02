@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     public function index()
@@ -21,8 +21,8 @@ class ProductController extends Controller
        //  $userName = User::find(Auth::id()); //return user object
        // $userName = \Auth::user()->id; //return id only
         $products = Product::with(['user'])->get();
-        $path = UploadPaths::getUploadPath('product_photos');
-        return view('products.index',compact('products','path'));
+      //  $path = UploadPaths::getUploadPath('product_photos');
+        return view('products.index',compact('products'));
     }
 
 
@@ -54,5 +54,8 @@ public function save(Request $request){
         ]);
 
     return back();
+}
+public function file(){
+        UploadPaths::uploadDataFromFile();
 }
 }

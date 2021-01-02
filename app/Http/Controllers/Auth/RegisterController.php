@@ -79,7 +79,7 @@ class RegisterController extends Controller
             $message->to($to_email,$to_name)->subject('welcome');
             $message->from(env('MAIL_FROM_ADDRESS'),'Admin');
         });*/
-        Mail::to($to_email)->send(new WelcomeMail($user));
+       // Mail::to($to_email)->send(new WelcomeMail($user));
 
         return $user;
     }
